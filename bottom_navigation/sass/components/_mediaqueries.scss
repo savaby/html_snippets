@@ -1,0 +1,76 @@
+// For really small deviced don't show menu text
+@media screen and (max-width: 320px) {
+    .nav__name {
+        display: none;
+    }
+}
+
+// from medium screen don't span menu items on full bottom width
+@media screen and (min-width: 576px) {
+    .nav__list {
+        justify-content: center;
+        column-gap: 3rem;
+    }
+}
+
+@media screen and (min-width: 767px) {
+    body {
+        margin: 0;
+    }
+
+    // Increase padding top on value of header-height, since we remove body margin-top
+    .section {
+        padding: 7rem 0 2rem;
+    }
+
+    .nav {
+        // Increase height because we need to place menu
+        height: calc(var(--header-height) + 1.5rem);
+
+        // Hide image
+        &__img {
+            display: none;
+        }
+
+        // Hide menu icons
+        &__icon {
+            display: none;
+        }
+
+        // Increase menu font size
+        &__name {
+            font-size: var(--normal-font-size);
+        }
+
+        .minimal &__name {
+            display: block;
+        }
+
+        // Set hover effect
+        &__link:hover {
+            color: var(--first-color);
+        }
+    }
+
+    .active-link::before {
+        content: "";
+        position: absolute;
+        bottom: -0.75rem;
+        width: 4px;
+        height: 4px;
+        background-color: var(--first-color);
+        border-radius: 50%;
+    }
+
+    .minimal .active-link::before {
+        bottom: -0.75rem;
+    }
+}
+
+// For large devices position container width of 968 center
+@media screen and (min-width: 1024px) {
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

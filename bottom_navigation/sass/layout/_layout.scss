@@ -1,0 +1,22 @@
+.section {
+    // Use padding for section gap
+    padding: 4.5rem 0 2rem;
+
+    &__title {
+        font-size: var(--h1-font-size);
+        color: var(--title-color);
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    // set height for test, for real project possible min-height
+    &__height {
+        height: 100vh;
+    }
+}
+
+// place container max midth of 968px for mobile screen
+.container {
+    max-width: 968px;
+    margin: 0 1rem;
+}
