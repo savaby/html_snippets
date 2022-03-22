@@ -1,0 +1,269 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+/*===== VARIABLES CSS =====*/
+:root {
+    --header-height: 3rem;
+
+    // Colors
+    --first-color: #3664f4;
+    --dark-color: #070d1f;
+    --dark-color-alt: #282b3a;
+    --white-color: #e6e7e9;
+
+    // Typography
+    --body-font: "Poppins", sans-serif;
+    --normal-font-size: 0.938rem;
+    --small-font-size: 0.813rem;
+
+    // z-index
+    --z-fixed: 100;
+}
+
+:root {
+    @media screen and (min-width: 768px) {
+        --normal-font-size: 1rem;
+        --small-font-size: 0.875rem;
+    }
+}
+
+// Base
+
+*,
+::before,
+::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    outline: none;
+    border: none;
+}
+
+body {
+    // Using margin, for top. Since we use fixed header navigation
+    margin-top: var(--header-height);
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    font-weight: 500;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.db-grid {
+    // Mobile first approach, using dedicated width
+    max-width: 1024px;
+    display: grid;
+    grid-template-columns: 100%;
+    // use specific margin for mobie view
+    margin: 0 1.5rem;
+}
+
+// Header
+.header {
+    width: 100%;
+    // Static height, use same margin for body element
+    height: var(--header-height);
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0 1.5rem;
+    background-color: var(--dark-color);
+    z-index: var(--z-fixed);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__logo {
+        color: var(--white-color);
+    }
+
+    &__toggle {
+        font-size: 1.5rem;
+        color: var(--white-color);
+        cursor: pointer;
+    }
+}
+
+// Mobile first nav media queries
+
+@media screen and (max-width: 768px) {
+    .nav {
+        position: fixed;
+        top: 0;
+        // hide to left, to dislay sliding
+        left: -100%;
+        background-color: var(--dark-color);
+        color: var(--white-color);
+        // Full screen nav
+        width: 100%;
+        height: 100vh;
+        padding: 1.5rem 0;
+        z-index: var(--z-fixed);
+        transition: 0.5s;
+    }
+}
+
+.nav {
+    &__content {
+        height: 100%;
+        grid-template-rows: max-content 1fr max-content;
+        row-gap: 2rem;
+    }
+
+    &__close {
+        position: absolute;
+        right: 1.5rem;
+        font-size: 1.3rem;
+        padding: 0.25rem;
+        background-color: var(--dark-color-alt);
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    &__img {
+        display: flex;
+        justify-content: center;
+        padding-top: 0.25rem;
+        margin-bottom: 0.8rem;
+        width: 56px;
+        height: 56px;
+        background-color: var(--first-color);
+        border-radius: 50%;
+        overflow: hidden;
+
+        & img {
+            width: 46px;
+        }
+    }
+
+    &__name {
+        display: block;
+        color: var(--white-color);
+    }
+
+    &__profession {
+        font-size: var(--small-font-size);
+    }
+
+    // Center menu container inside spanned place
+    &__menu {
+        align-self: center;
+    }
+
+    &__item {
+        margin: 2.5rem 0;
+    }
+
+    &__link {
+        color: var(--white-color);
+    }
+
+    &__social {
+        padding-top: 0.5rem;
+
+        &-icon {
+            font-size: 1.2rem;
+            color: var(--white-color);
+            margin-right: 1rem;
+
+            &:hover {
+                color: var(--first-color);
+            }
+        }
+    }
+}
+
+.show {
+    left: 0;
+}
+
+.active {
+    color: var(--first-color);
+}
+
+// Media queries
+// Tablet
+// from 768px
+@media screen and (min-width: 768px) {
+    body {
+        margin: 0;
+    }
+
+    .header {
+        height: calc(var(--header-height) + 1rem);
+
+        &__logo,
+        &__toggle {
+            display: none;
+        }
+    }
+
+    .nav {
+        width: 100%;
+
+        &__content {
+            grid-template-columns: repeat(3, max-content);
+            grid-template-rows: 1fr;
+            column-gap: 1rem;
+            justify-content: space-between;
+        }
+
+        &__close,
+        &__profession {
+            display: none;
+        }
+
+        &__perfil {
+            display: flex;
+            align-items: center;
+        }
+
+        &__img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+            margin-bottom: 0;
+            align-items: center;
+
+            & img {
+                width: 26px;
+            }
+        }
+
+        &__list {
+            display: flex;
+        }
+
+        &__item {
+            // change margin direction from column to row
+            margin: 0 0.25rem;
+        }
+
+        &__link {
+            // create buttons from text-links
+            padding: 0.5rem 0.8rem;
+            border-radius: 0.25rem;
+
+            &:hover {
+                background-color: var(--first-color);
+            }
+        }
+    }
+
+    .active {
+        background-color: var(--first-color);
+        color: var(--white-color);
+    }
+}
+
+@media screen and(min-width: 1024px) {
+    .db-grid {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
